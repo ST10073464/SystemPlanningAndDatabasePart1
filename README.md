@@ -122,7 +122,7 @@ The ERD contains six entities:
 * Enrolments
 * Results
 
-The SQL script matches the ERD and includes primary keys, foreign keys, uniqueness rules, check constraints, and sample seed data.
+## The SQL script matches the ERD and includes primary keys, foreign keys, uniqueness rules, check constraints, and sample seed data.
 
 MySQL 
 
@@ -131,5 +131,9 @@ MySQL
 3. The script creates `RaceDayDb`.
 4. It creates all six tables and inserts sample data.
 5. The final SELECT statements can be used to verify the data.
+
+## YouTube video link unlisted
+https://youtu.be/rbyL_UlNejA
+
 
 
