@@ -8,6 +8,8 @@
 
 ## Project Overview
 
+## Repository Structure
+
 RaceDay-Event-Management-System/
 │
 ├── .github/
@@ -54,6 +56,45 @@ RaceDay-Event-Management-System/
 ├── .gitignore
 ├── README.md
 └── LICENSE
+
+## GitHub workFlow
+
+RaceDay Project
+       │
+       ▼
+Create Database
+       │
+       ▼
+Develop C# API
+       │
+       ▼
+Develop Frontend
+       │
+       ▼
+Connect API → MySQL
+       │
+       ▼
+Test Application
+       │
+       ▼
+Git Commit
+       │
+       ▼
+GitHub Push
+       │
+       ▼
+raceday-ci.yml
+       │
+       ├── Restore
+       ├── Build
+       └── Test
+       │
+       ▼
+Successful Build
+       │
+       ▼
+Final Submission
+
 
 RaceDay is a web-based event management system for South African road running, walking and cycling events. The system supports two roles:
 
