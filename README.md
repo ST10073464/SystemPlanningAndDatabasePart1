@@ -133,7 +133,8 @@ MySQL
 5. The final SELECT statements can be used to verify the data.
 
 ## YouTube video link unlisted
-https://youtu.be/rbyL_UlNejA
+https://youtu.be/C_IgiKL0Ya0
+
 
 
 
