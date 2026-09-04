@@ -14,10 +14,10 @@ Participant: creates an account, browses events, enters events by selecting a ca
 Part 1 Deliverables
 
 The `/docs` folder contains:
-`RaceDay\\\_ERD.png` – Entity Relationship Diagram.
-`API\\\_Endpoint\\\_Plan.md` – planned REST API endpoints.
+`RaceDay_ERD.png` – Entity Relationship Diagram.
+`APIEndpointPlan.docx` – planned REST API endpoints.
 `RaceDayDb.sql` – SQL Server database creation and seed script.
-`RaceDay\\\_ERD.dot` – editable Graphviz source for the ERD.
+`RaceDay_ERD.docx` – editable Graphviz source for the ERD.
 
 Database Design
 
@@ -29,11 +29,11 @@ Categories
 Enrolments
 Results
 
-The SQL script has been designed to match the ERD, including primary keys, foreign keys, uniqueness rules, check constraints and sample seed data.
+The SQL script matches the ERD and includes primary keys, foreign keys, uniqueness rules, check constraints, and sample seed data.
 
 MySQL
 
-Open the `docs/SQLDATABASESCRIPT.Docx` copy and paste in SQL Server Management Studio or MySQL.
+Open the `docs/SQLDATABASESCRIPT.Docx` file and paste it into SQL Server Management Studio or MySQL.
 
 Execute the script on a SQL Server instance or MySQL.
 
@@ -42,3 +42,19 @@ The script creates `RaceDayDb`
 It creates all six tables and inserts sample data.
 
 The final SELECT statements can be used to verify the data.
+
+GITHUB Repository
+RaceDay/ 
+│ 
+├── RaceDay.API/ 
+├── RaceDay.Client/ 
+├── Database/ 
+│   └── RaceDaydb.sql 
+│ 
+├── Documentation/ 
+│ ├── ERD 
+│ ├── API Plan 
+│ └── Project Documentation 
+│ 
+├── README.md 
+└── .gitignore
