@@ -37,7 +37,7 @@ jobs:
             exit 1
           }
 
-          test -f docs/RaceDayDB_SQL_Server.sql || {
+          test -f docs/RaceDay_Database.sql || {
             echo "ERROR: SQL Server script is missing."
             exit 1
           }
@@ -54,7 +54,7 @@ jobs:
         run: |
           set -e
 
-          SQL="docs/RaceDayDB_SQL_Server.sql"
+          SQL="docs/RaceDay_Database.sql"
 
           for statement in \
             "CREATE TABLE" \
