@@ -1,0 +1,102 @@
+
+name: RaceDay Part 1 Validation
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  validate-submission:
+    name: Validate Part 1 files
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required submission files
+        shell: bash
+        run: |
+          set -e
+
+          test -d docs || {
+            echo "ERROR: docs folder is missing."
+            exit 1
+          }
+
+          test -f docs/RaceDay_ERD.png || {
+            echo "ERROR: ERD image is missing."
+            exit 1
+          }
+
+          test -f docs/RaceDay_API_Endpoint_Plan.pdf || {
+            echo "ERROR: API Endpoint Plan is missing."
+            exit 1
+          }
+
+          test -f docs/RaceDayDB_SQL_Server.sql || {
+            echo "ERROR: SQL Server script is missing."
+            exit 1
+          }
+
+          test -f README.md || {
+            echo "ERROR: README.md is missing."
+            exit 1
+          }
+
+          echo "All required Part 1 files are present."
+
+      - name: Validate SQL script contents
+        shell: bash
+        run: |
+          set -e
+
+          SQL="docs/RaceDayDB_SQL_Server.sql"
+
+          for statement in \
+            "CREATE TABLE" \
+            "PRIMARY KEY" \
+            "FOREIGN KEY" \
+            "INSERT INTO" \
+            "CREATE DATABASE"
+          do
+            if ! grep -qi "$statement" "$SQL"; then
+              echo "ERROR: SQL script is missing: $statement"
+              exit 1
+            fi
+          done
+
+          for table in \
+            Roles Users Events Categories Enrolments Results
+          do
+            if ! grep -qiE \
+              "CREATE TABLE[[:space:]]+(dbo\.)?${table}([^[:alnum:]_]|$)" \
+              "$SQL"; then
+              echo "ERROR: Missing CREATE TABLE for $table."
+              exit 1
+            fi
+          done
+
+          echo "SQL structure checks passed."
+
+      - name: Check authentication endpoints in documentation
+        shell: bash
+        run: |
+          set -e
+
+          PLAN="docs/RaceDay_API_Endpoint_Plan.pdf"
+
+          if ! command -v pdftotext >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y poppler-utils
+          fi
+
+          pdftotext "$PLAN" /tmp/api-plan.txt
+
+          grep -qi "/api/auth/register" /tmp/api-plan.txt
+          grep -qi "/api/auth/login" /tmp/api-plan.txt
+
+          echo "Authentication endpoint checks passed."
